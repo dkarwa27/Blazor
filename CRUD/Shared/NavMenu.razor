@@ -1,0 +1,89 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">CRUD</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/editemployee" @onclick="HandleClick">
+                <span class="oi oi-plus" aria-hidden="true"></span> Create Employee
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/systemexplorer" @onclick="OpenSysExplorer">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> System Explorer
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/applicationexplorer" @onclick="OpenAppExplorer">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Application Explorer
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/projectexplorer" @onclick="OpenProjExplorer">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Project Explorer
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/topologyexplorer" @onclick="OpenTopoExplorer">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Topology Explorer
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/globaltemplateseditor" @onclick="OpenGTE">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Global Templates Editor
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    @inject NavigationManager NavigationManager;
+
+    private void HandleClick()
+    {
+        NavigationManager.NavigateTo("editemployee", true);
+    }
+
+    private void OpenSysExplorer()
+    {
+        NavigationManager.NavigateTo("systemexplorer", true);
+    }
+
+    private void OpenAppExplorer()
+    {
+        NavigationManager.NavigateTo("applicationexplorer", true);
+    }
+
+    private void OpenTopoExplorer()
+    {
+        NavigationManager.NavigateTo("topologyexplorer", true);
+    }
+
+    private void OpenProjExplorer()
+    {
+        NavigationManager.NavigateTo("projectexplorer", true);
+    }
+
+    private void OpenGTE()
+    {
+        NavigationManager.NavigateTo("globaltemplateseditor", true);
+    }
+}
